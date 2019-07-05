@@ -1,6 +1,7 @@
-formats:
-    - none
+build:
+  image: latest
 python:
+    version: 3.6
     setup_py_install: true
     pip_install: true
-    extra_requirements: [jmespath, mock]
+    extra_requirements:
