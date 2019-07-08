@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. 管理客户端配置 &mdash; 阿里云Python SDK使用文档 0.0.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="5. 异常处理" href="05_exceptions.html" />
+    <link rel="prev" title="3. 管理 Endpoint" href="03_endpoint.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 阿里云Python SDK使用文档
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advance/index.html">进阶</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">高级实践</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_retry.html">1. 管理重试策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_credentials.html">2. 管理用户凭证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_endpoint.html">3. 管理 Endpoint</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 管理客户端配置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4.1. 创建客户端时显式传递参数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-client">方式一：get_client接口显式传递</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-clientconfig">方式二：get_client接口通过config传递</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">4.2. 环境变量配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.3. 文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">4.4. 默认配置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="05_exceptions.html">5. 异常处理</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">用户指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions/index.html">FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">阿里云Python SDK使用文档</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">高级实践</a> &raquo;</li>
+        
+      <li>4. 管理客户端配置</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/higher/04_client.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="handle-client">
+<span id="id1"></span><h1>4. 管理客户端配置<a class="headerlink" href="#handle-client" title="永久链接至标题">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Alibaba</span> <span class="pre">Cloud</span> <span class="pre">Python</span> <span class="pre">SDK</span></code> 提供多种方式管理您发送请求时候的 <code class="docutils literal notranslate"><span class="pre">Config</span></code>
+，一般，我们遵循这样的方法：<strong>尝试各种位置，直到找到值</strong>。
+<code class="docutils literal notranslate"><span class="pre">Alibaba</span> <span class="pre">Cloud</span> <span class="pre">Python</span> <span class="pre">SDK</span></code> 使用以下方式查找您的配置：</p>
+<ul class="simple">
+<li><p>创建客户端时显式传递为参数</p></li>
+<li><p>环境变量</p></li>
+<li><p>文件</p></li>
+<li><p>默认配置</p></li>
+</ul>
+<div class="section" id="id2">
+<h2>4.1. 创建客户端时显式传递参数<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="get-client">
+<h3>方式一：get_client接口显式传递<a class="headerlink" href="#get-client" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">get_client</span></code> 接口递仅仅支持 <code class="docutils literal notranslate"><span class="pre">region_id</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>
+显式传递。此处指定的 <code class="docutils literal notranslate"><span class="pre">region_id</span></code> 和 <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>
+优先级高于任何其他的链式 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 指定。</p>
+<p><strong>endpoint:</strong>
+Endpoint是阿里云服务的API服务端地址。针对不同的地域，单个服务可能有不同的Endpoint。例如，云服务器（ECS）在华东1（杭州）地域的Endpoint是
+ecs-cn-hangzhou.aliyuncs.com，
+而在日本（东京）地域的Endpoint是ecs.ap-northeast-1.aliyuncs.com。
+如果您不显式指定endpoint，阿里云SDK内置了
+Endpoint寻址模块，当您调用SDK对一个服务发起请求时，SDK会自动根据您在创建SDK
+Client时指定的地域ID（Region ID）和产品ID来找到Endpoint。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">alibabacloud</span> <span class="kn">import</span> <span class="n">get_client</span>
+
+<span class="n">ecs_client</span> <span class="o">=</span> <span class="n">get_client</span><span class="p">(</span><span class="s1">&#39;ecs&#39;</span><span class="p">,</span> <span class="n">access_key_id</span><span class="o">=</span><span class="n">access_key_id</span><span class="p">,</span>
+                        <span class="n">access_key_secret</span><span class="o">=</span><span class="n">access_key_secret</span><span class="p">,</span>
+                        <span class="n">region_id</span><span class="o">=</span><span class="s1">&#39;cn-hangzhou&#39;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;ecs-cn-hangzhou.aliyuncs.com&#39;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">ecs_client</span><span class="o">.</span><span class="n">describe_tags</span><span class="p">(</span><span class="n">page_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Tags&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-clientconfig">
+<h3>方式二：get_client接口通过config传递<a class="headerlink" href="#get-clientconfig" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">get_client</span></code> 接口 支持用户显式传递 <code class="docutils literal notranslate"><span class="pre">ClientConfig</span></code> 对象。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">alibabacloud</span> <span class="kn">import</span> <span class="n">get_client</span><span class="p">,</span> <span class="n">ClientConfig</span>
+
+<span class="n">client_config</span> <span class="o">=</span> <span class="n">ClientConfig</span><span class="p">(</span><span class="n">region_id</span><span class="o">=</span><span class="s1">&#39;cn-hangzhou&#39;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;ecs-cn-hangzhou.aliyuncs.com&#39;</span><span class="p">)</span>
+
+<span class="n">ecs_client</span> <span class="o">=</span> <span class="n">get_client</span><span class="p">(</span><span class="s1">&#39;ecs&#39;</span><span class="p">,</span> <span class="n">access_key_id</span><span class="o">=</span><span class="n">access_key_id</span><span class="p">,</span>
+                        <span class="n">access_key_secret</span><span class="o">=</span><span class="n">access_key_secret</span><span class="p">,</span>
+                        <span class="n">config</span><span class="o">=</span><span class="n">client_config</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">ecs_client</span><span class="o">.</span><span class="n">describe_tags</span><span class="p">(</span><span class="n">page_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Tags&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>4.2. 环境变量配置<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Alibaba</span> <span class="pre">Cloud</span> <span class="pre">Python</span> <span class="pre">SDK</span></code> 支持从环境变量读取部分 <code class="docutils literal notranslate"><span class="pre">config</span></code> 相关配置</p>
+<p><strong>HTTPS_PROXY</strong>：HTTPS代理</p>
+<p><strong>HTTP_PROXY</strong>：HTTP代理</p>
+</div>
+<div class="section" id="id4">
+<h2>4.3. 文件<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>在查找配置值时，<code class="docutils literal notranslate"><span class="pre">Alibaba</span> <span class="pre">Cloud</span> <span class="pre">Python</span> <span class="pre">SDK</span></code>还将搜索<code class="docutils literal notranslate"><span class="pre">~/.alibabacloud/config</span></code>文件。您可以设置环境变量<code class="docutils literal notranslate"><span class="pre">ALIBABA_CLOUD_CONFIG_FILE</span></code>值来更改此文件的位置。
+此文件是INI格式文件，我们支持多个section配置，但是目前，我们默认只读取default</p>
+<p>以下是<code class="docutils literal notranslate"><span class="pre">~/.alibabacloud/config</span></code>支持的所有的配置变量：</p>
+<ul class="simple">
+<li><p>region_id：要使用的默认地域，参考 <a class="reference external" href="https://help.aliyun.com/document_detail/40654.html">地域与可用区</a></p></li>
+<li><p>endpoint：默认的endpoint,即服务请求地址</p></li>
+<li><p>max_retry_times：单个请求的最大重试次数</p></li>
+<li><p>http_port：HTTP代理服务器</p></li>
+<li><p>https_port：HTTPS代理服务器</p></li>
+<li><p>connection_timeout：尝试建立连接时，抛出超时异常的时间，单位为秒。默认5秒</p></li>
+<li><p>read_timeout：尝试从连接读取时抛出超时异常的时间，单位为秒。默认10秒</p></li>
+<li><p>http_proxy：http代理</p></li>
+<li><p>https_proxy：HTTPS代理</p></li>
+<li><p>user_agent：用户自定义的user_gent</p></li>
+</ul>
+<p><strong>注意：</strong>
+目前文件暂不支持开关类接口配置。开关类接口在文件中一经配置，默认为开启</p>
+<ul class="simple">
+<li><p>enable_retry：是否使用使用重试</p></li>
+<li><p>enable_https：使用HTTPS</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>4.4. 默认配置<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Alibaba</span> <span class="pre">Cloud</span> <span class="pre">Python</span> <span class="pre">SDK</span></code>
+提供一些默认的配置，保障API请求或者服务的通路。您可以通过上边的方式进行修改。</p>
+<p><strong>max_retry_times</strong>：最大重试次数，默认3次</p>
+<p><strong>enable_retry</strong>：是否重试，默认True</p>
+<p><strong>enable_https</strong>：是否使用ssl，默认True</p>
+<p><strong>http_port</strong>:HTTP请求 端口，默认80</p>
+<p><strong>https_port</strong>：HTTPS请求端口，默认443</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="05_exceptions.html" class="btn btn-neutral float-right" title="5. 异常处理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="03_endpoint.html" class="btn btn-neutral float-left" title="3. 管理 Endpoint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, sdk
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

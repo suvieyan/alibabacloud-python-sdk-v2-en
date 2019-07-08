@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="'en'" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="'en'" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>alibabacloud.services.ecs &mdash; 阿里云Python SDK使用文档 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> 阿里云Python SDK使用文档
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance/index.html">进阶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../higher/index.html">高级实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">用户指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../questions/index.html">FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">阿里云Python SDK使用文档</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../alibabacloud.html">alibabacloud</a> &raquo;</li>
+        
+      <li>alibabacloud.services.ecs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alibabacloud.services.ecs</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2018 Alibaba Cloud Inc. All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#    http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">alibabacloud.exceptions</span> <span class="k">import</span> <span class="n">ClientException</span>
+
+<span class="kn">from</span> <span class="nn">alibabacloud.resources.base</span> <span class="k">import</span> <span class="n">ServiceResource</span>
+<span class="kn">from</span> <span class="nn">alibabacloud.resources.collection</span> <span class="k">import</span> <span class="n">_create_resource_collection</span>
+<span class="kn">from</span> <span class="nn">alibabacloud.resources.collection</span> <span class="k">import</span> <span class="n">_create_default_resource_collection</span>
+<span class="kn">from</span> <span class="nn">alibabacloud.utils.utils</span> <span class="k">import</span> <span class="n">_assert_is_not_none</span><span class="p">,</span> <span class="n">_new_get_key_in_response</span><span class="p">,</span> <span class="n">_transfer_params</span>
+
+
+<div class="viewcode-block" id="ECSInstanceResource"><a class="viewcode-back" href="../../../reference/02_resource.html#alibabacloud.services.ecs.ECSInstanceResource">[docs]</a><span class="k">class</span> <span class="nc">ECSInstanceResource</span><span class="p">(</span><span class="n">ServiceResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ecs 实例资源类</span>
+
+<span class="sd">    :param instance_id: 实例ID</span>
+<span class="sd">    :type instance_id: str</span>
+
+<span class="sd">    :param _client:  Alibaba Cloud Client</span>
+<span class="sd">    :type _client: alibaba.client.AlibabaCloudClient</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">STATUS_RUNNING</span> <span class="o">=</span> <span class="s2">&quot;Running&quot;</span>
+    <span class="n">STATUS_STARTING</span> <span class="o">=</span> <span class="s2">&quot;Starting&quot;</span>
+    <span class="n">STATUS_STOPPING</span> <span class="o">=</span> <span class="s2">&quot;Stopping&quot;</span>
+    <span class="n">STATUS_STOPPED</span> <span class="o">=</span> <span class="s2">&quot;Stopped&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">ServiceResource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;ecs.instance&#39;</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="n">_client</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span> <span class="o">=</span> <span class="n">instance_id</span>
+        <span class="n">_assert_is_not_none</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="s2">&quot;instance_id&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">region_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inner_ip_address</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">creation_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expired_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">io_optimized</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">public_ip_address</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internet_charge_type</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vpc_attributes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_charge_type</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_network_type</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_type</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eip_address</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serial_number</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operation_locks</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">security_group_ids</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internet_max_bandwidth_out</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zone_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">internet_max_bandwidth_in</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device_available</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">describe_instances</span><span class="p">(</span><span class="n">instance_ids</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span><span class="p">]))</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">_new_get_key_in_response</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s1">&#39;Instances.Instance&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">items</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ClientException</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span>
+                                  <span class="s2">&quot;Failed to find instance data from DescribeInstances response. &quot;</span>
+                                  <span class="s2">&quot;InstanceId = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_attributes</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">wait_until</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_status</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span><span class="p">):</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&gt;=</span> <span class="n">timeout</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Timed out: no </span><span class="si">{0}</span><span class="s2"> status after </span><span class="si">{1}</span><span class="s2"> seconds.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">target_status</span><span class="p">,</span> <span class="n">timeout</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">target_status</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">wait_until_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait_until</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">STATUS_RUNNING</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">wait_until_starting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait_until</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">STATUS_STARTING</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">wait_until_stopping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait_until</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">STATUS_STOPPING</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">wait_until_stopped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait_until</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">STATUS_STOPPED</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">start_instance</span><span class="p">(</span><span class="n">instance_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">stop_instance</span><span class="p">(</span><span class="n">instance_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">reboot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">reboot_instance</span><span class="p">(</span><span class="n">instance_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">delete_instance</span><span class="p">(</span><span class="n">instance_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">redeploy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">redeploy_instance</span><span class="p">(</span><span class="n">instance_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">modify_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">modify_instance_attribute</span><span class="p">(</span><span class="n">instance_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">replace_system_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">replace_system_disk</span><span class="p">(</span><span class="n">instance_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;DiskId&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">modify_vnc_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">modify_instance_vnc_passwd</span><span class="p">(</span><span class="n">instance_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ECSSystemEventResource"><a class="viewcode-back" href="../../../reference/02_resource.html#alibabacloud.services.ecs.ECSSystemEventResource">[docs]</a><span class="k">class</span> <span class="nc">ECSSystemEventResource</span><span class="p">(</span><span class="n">ServiceResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ECS 系统事件资源类</span>
+
+<span class="sd">    :param event_id: 事件id</span>
+<span class="sd">    :type event_id: str</span>
+
+<span class="sd">    :param _client:  Alibaba Cloud Client</span>
+<span class="sd">    :type _client: alibaba.client.AlibabaCloudClient</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">class</span> <span class="nc">EventCycleStatus</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Scheduled: The event is waiting for processing.</span>
+<span class="sd">        Avoided: You have fixed the event before it is complete.</span>
+<span class="sd">        Executing: The event is in processing.</span>
+<span class="sd">        Executed: Event progress is complete.</span>
+<span class="sd">        Canceled: The event is canceled.</span>
+<span class="sd">        Failed: Event progress failed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">SCHEDULED</span> <span class="o">=</span> <span class="s2">&quot;Scheduled&quot;</span>
+        <span class="n">AVOIDED</span> <span class="o">=</span> <span class="s2">&quot;Avoided&quot;</span>
+        <span class="n">EXECUTING</span> <span class="o">=</span> <span class="s2">&quot;Executing&quot;</span>
+        <span class="n">EXECUTED</span> <span class="o">=</span> <span class="s2">&quot;Executed&quot;</span>
+        <span class="n">CANCELED</span> <span class="o">=</span> <span class="s2">&quot;Canceled&quot;</span>
+        <span class="n">FAILED</span> <span class="o">=</span> <span class="s2">&quot;Failed&quot;</span>
+
+    <span class="k">class</span> <span class="nc">EventType</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SystemMaintenance.Reboot: Reboot due to system maintenance instance.</span>
+<span class="sd">        SystemFailure.Reboot: Restart due to system error instance.</span>
+<span class="sd">        InstanceFailure.Reboot: Restart due to instance error.</span>
+<span class="sd">        InstanceExpiration.Stop: Subscription instances stop due to expiration.</span>
+<span class="sd">        InstanceExpiration.Delete:</span>
+<span class="sd">            Subscription instances are released after several days of expiration.</span>
+<span class="sd">        AccountUnbalanced.Stop: Pay-As-You-Go instances stop due to expiration.</span>
+<span class="sd">        AccountUnbalanced.Delete:</span>
+<span class="sd">            Pay-As-You-Go instances are released after several days of expiration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">SYSTEM_MAINTENANCE_REBOOT</span> <span class="o">=</span> <span class="s2">&quot;SystemMaintenance.Reboot&quot;</span>
+        <span class="n">SYSTEM_FAILURE_REBOOT</span> <span class="o">=</span> <span class="s2">&quot;SystemFailure.Reboot&quot;</span>
+        <span class="n">INSTANCE_FAILURE_REBOOT</span> <span class="o">=</span> <span class="s2">&quot;InstanceFailure.Reboot&quot;</span>
+        <span class="n">INSTANCE_EXPIRATION_STOP</span> <span class="o">=</span> <span class="s2">&quot;InstanceExpiration.Stop&quot;</span>
+        <span class="n">INSTANCE_EXPIRATION_DELETE</span> <span class="o">=</span> <span class="s2">&quot;InstanceExpiration.Delete&quot;</span>
+        <span class="n">ACCOUNT_UNBALANCED_STOP</span> <span class="o">=</span> <span class="s2">&quot;AccountUnbalanced.Stop&quot;</span>
+        <span class="n">ACCOUNT_UNBALANCED_DELETE</span> <span class="o">=</span> <span class="s2">&quot;AccountUnbalanced.Delete&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event_id</span> <span class="o">=</span> <span class="n">event_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event_finish_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">_assert_is_not_none</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="s2">&quot;event_id&quot;</span><span class="p">)</span>
+        <span class="n">ServiceResource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;ecs.event&quot;</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="n">_client</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">describe_instance_history_events</span><span class="p">(</span><span class="n">event_id</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">event_id</span><span class="p">,</span> <span class="p">])</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">_new_get_key_in_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;InstanceSystemEventSet.InstanceSystemEventType&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">items</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ClientException</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span>
+                                  <span class="s2">&quot;Failed to find event data from &quot;</span>
+                                  <span class="s2">&quot;DescribeInstanceHistoryEventsRequest response. &quot;</span>
+                                  <span class="s2">&quot;EventId = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_id</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_attributes</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">get_event_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;event_type&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_type</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_event_cycle_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;event_cycle_status&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_cycle_status</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ECSInstanceFullStatus"><a class="viewcode-back" href="../../../reference/02_resource.html#alibabacloud.services.ecs.ECSInstanceFullStatus">[docs]</a><span class="k">class</span> <span class="nc">ECSInstanceFullStatus</span><span class="p">(</span><span class="n">ServiceResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;ECS 实例状态资源类&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_assign_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+        <span class="n">ServiceResource</span><span class="o">.</span><span class="n">_assign_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_events</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">system_events_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduled_system_event_set</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;ScheduledSystemEventType&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">system_events_data</span><span class="p">:</span>
+            <span class="n">event_id</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;EventId&#39;</span><span class="p">)</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="n">ECSSystemEventResource</span><span class="p">(</span><span class="n">event_id</span><span class="p">)</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">_assign_attributes</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ECSDiskResource"><a class="viewcode-back" href="../../../reference/02_resource.html#alibabacloud.services.ecs.ECSDiskResource">[docs]</a><span class="k">class</span> <span class="nc">ECSDiskResource</span><span class="p">(</span><span class="n">ServiceResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ECS 硬盘资源类</span>
+
+<span class="sd">    :param disk_id: 硬盘id</span>
+<span class="sd">    :type disk_id: str</span>
+
+<span class="sd">    :param _client:  Alibaba Cloud Client</span>
+<span class="sd">    :type _client: alibaba.client.AlibabaCloudClient</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disk_id</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disk_id</span> <span class="o">=</span> <span class="n">disk_id</span>
+        <span class="n">_assert_is_not_none</span><span class="p">(</span><span class="n">disk_id</span><span class="p">,</span> <span class="s2">&quot;disk_id&quot;</span><span class="p">)</span>
+        <span class="n">ServiceResource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;ecs.disk&quot;</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="n">_client</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">delete_disk</span><span class="p">(</span><span class="n">disk_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disk_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">attach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">attach_disk</span><span class="p">(</span><span class="n">disk_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disk_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">detach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">detach_disk</span><span class="p">(</span><span class="n">disk_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disk_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">modify_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">modify_disk_attribute</span><span class="p">(</span><span class="n">disk_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disk_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">describe_disks</span><span class="p">(</span><span class="n">disk_ids</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">disk_id</span><span class="p">]))</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">_new_get_key_in_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;Disks.Disk&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">items</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ClientException</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span>
+                                  <span class="s2">&quot;Failed to find disk data from DescribeDiks &quot;</span>
+                                  <span class="s2">&quot;response. &quot;</span>
+                                  <span class="s2">&quot;DiskId = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">disk_id</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_attributes</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">reinit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">re_init_disk</span><span class="p">(</span><span class="n">disk_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disk_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">resize_disk</span><span class="p">(</span><span class="n">disk_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disk_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">reset_disk</span><span class="p">(</span><span class="n">disk_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disk_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ECSImageResource"><a class="viewcode-back" href="../../../reference/02_resource.html#alibabacloud.services.ecs.ECSImageResource">[docs]</a><span class="k">class</span> <span class="nc">ECSImageResource</span><span class="p">(</span><span class="n">ServiceResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ecs 镜像资源类</span>
+
+<span class="sd">    :param image_id: 镜像id</span>
+<span class="sd">    :type image_id:  str</span>
+
+<span class="sd">    :param _client:  Alibaba Cloud Client</span>
+<span class="sd">    :type _client: alibaba.client.AlibabaCloudClient</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_id</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_id</span> <span class="o">=</span> <span class="n">image_id</span>
+        <span class="n">_assert_is_not_none</span><span class="p">(</span><span class="n">image_id</span><span class="p">,</span> <span class="s2">&quot;image_id&quot;</span><span class="p">)</span>
+        <span class="n">ServiceResource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;ecs.image&quot;</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="n">_client</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">delete_image</span><span class="p">(</span><span class="n">image_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">modify_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">modify_image_attribute</span><span class="p">(</span><span class="n">image_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image_id</span><span class="p">,</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">describe_images</span><span class="p">(</span><span class="n">image_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image_id</span><span class="p">)</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">_new_get_key_in_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;Images.Image&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">items</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ClientException</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span>
+                                  <span class="s2">&quot;Failed to find image data from DescribeImages &quot;</span>
+                                  <span class="s2">&quot;response. &quot;</span>
+                                  <span class="s2">&quot;ImageId = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_id</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_attributes</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+
+
+<span class="k">class</span> <span class="nc">ECSTagResource</span><span class="p">(</span><span class="n">ServiceResource</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">ECSDemand</span><span class="p">(</span><span class="n">ServiceResource</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="ECSResource"><a class="viewcode-back" href="../../../reference/02_resource.html#alibabacloud.services.ecs.ECSResource">[docs]</a><span class="k">class</span> <span class="nc">ECSResource</span><span class="p">(</span><span class="n">ServiceResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ECS 资源类</span>
+
+<span class="sd">    :param _client:  Alibaba Cloud Client</span>
+<span class="sd">    :type _client: alibaba.client.AlibabaCloudClient</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">ServiceResource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;ecs&#39;</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="n">_client</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instances</span> <span class="o">=</span> <span class="n">_create_resource_collection</span><span class="p">(</span>
+            <span class="n">ECSInstanceResource</span><span class="p">,</span> <span class="n">_client</span><span class="p">,</span> <span class="n">_client</span><span class="o">.</span><span class="n">describe_instances</span><span class="p">,</span>
+            <span class="s1">&#39;Instances.Instance&#39;</span><span class="p">,</span> <span class="s1">&#39;InstanceId&#39;</span><span class="p">,</span>
+            <span class="n">singular_param_to_json</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;instance_id&#39;</span><span class="p">:</span> <span class="s1">&#39;InstanceIds&#39;</span><span class="p">},</span>
+            <span class="n">plural_param_to_json</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;instance_ids&#39;</span><span class="p">:</span> <span class="s1">&#39;InstanceIds&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;list_of_instance_id&#39;</span><span class="p">:</span> <span class="s1">&#39;InstanceIds&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;list_of_private_ip_address&#39;</span><span class="p">:</span> <span class="s1">&#39;PrivateIpAddresses&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;list_of_inner_ip_address&#39;</span><span class="p">:</span> <span class="s1">&#39;InnerIpAddresses&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;list_of_public_ip_address&#39;</span><span class="p">:</span> <span class="s1">&#39;PublicIpAddresses&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;list_of_eip_address&#39;</span><span class="p">:</span> <span class="s1">&#39;EipAddresses&#39;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system_events</span> <span class="o">=</span> <span class="n">_create_resource_collection</span><span class="p">(</span>
+            <span class="n">ECSSystemEventResource</span><span class="p">,</span> <span class="n">_client</span><span class="p">,</span> <span class="n">_client</span><span class="o">.</span><span class="n">describe_instance_history_events</span><span class="p">,</span>
+            <span class="s1">&#39;InstanceSystemEventSet.InstanceSystemEventType&#39;</span><span class="p">,</span> <span class="s1">&#39;EventId&#39;</span><span class="p">,</span>
+            <span class="n">param_aliases</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;list_of_event_id&#39;</span><span class="p">:</span> <span class="s1">&#39;EventId&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;list_of_event_cycle_status&#39;</span><span class="p">:</span> <span class="s1">&#39;InstanceEventCycleStatus&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;list_of_event_type&#39;</span><span class="p">:</span> <span class="s1">&#39;InstanceEventType&#39;</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_full_statuses</span> <span class="o">=</span> <span class="n">_create_default_resource_collection</span><span class="p">(</span>
+            <span class="n">ECSInstanceFullStatus</span><span class="p">,</span> <span class="n">_client</span><span class="p">,</span> <span class="n">_client</span><span class="o">.</span><span class="n">describe_instances_full_status</span><span class="p">,</span>
+            <span class="s1">&#39;InstanceFullStatusSet.InstanceFullStatusType&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">disks</span> <span class="o">=</span> <span class="n">_create_resource_collection</span><span class="p">(</span>
+            <span class="n">ECSDiskResource</span><span class="p">,</span> <span class="n">_client</span><span class="p">,</span> <span class="n">_client</span><span class="o">.</span><span class="n">describe_disks</span><span class="p">,</span>
+            <span class="s1">&#39;Disks.Disk&#39;</span><span class="p">,</span> <span class="s1">&#39;DiskId&#39;</span><span class="p">,</span>
+            <span class="n">plural_param_to_json</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;list_of_disk_id&#39;</span><span class="p">:</span> <span class="s1">&#39;DiskId&#39;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="n">_create_resource_collection</span><span class="p">(</span>
+            <span class="n">ECSImageResource</span><span class="p">,</span> <span class="n">_client</span><span class="p">,</span> <span class="n">_client</span><span class="o">.</span><span class="n">describe_images</span><span class="p">,</span>
+            <span class="s1">&#39;Images.Image&#39;</span><span class="p">,</span> <span class="s1">&#39;ImageId&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="n">_create_default_resource_collection</span><span class="p">(</span>
+            <span class="n">ECSTagResource</span><span class="p">,</span> <span class="n">_client</span><span class="p">,</span> <span class="n">_client</span><span class="o">.</span><span class="n">describe_tags</span><span class="p">,</span>
+            <span class="s1">&#39;Tags.Tag&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">demands</span> <span class="o">=</span> <span class="n">_create_default_resource_collection</span><span class="p">(</span>
+            <span class="n">ECSDemand</span><span class="p">,</span> <span class="n">_client</span><span class="p">,</span> <span class="n">_client</span><span class="o">.</span><span class="n">describe_demands</span><span class="p">,</span>
+            <span class="s1">&#39;Demands.Demand&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+        <span class="n">instance_id</span> <span class="o">=</span> <span class="n">_new_get_key_in_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;InstanceId&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ECSInstanceResource</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_instances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">run_instances</span><span class="p">(</span><span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+        <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">_new_get_key_in_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;InstanceIdSets.InstanceIdSet&#39;</span><span class="p">)</span>
+
+        <span class="n">instances</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">instance_id</span> <span class="ow">in</span> <span class="n">instance_ids</span><span class="p">:</span>
+            <span class="n">instance</span> <span class="o">=</span> <span class="n">ECSInstanceResource</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span>
+            <span class="n">instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">instances</span>
+
+    <span class="k">def</span> <span class="nf">create_simulated_system_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">create_simulated_system_events</span><span class="p">(</span><span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+        <span class="n">event_ids</span> <span class="o">=</span> <span class="n">_new_get_key_in_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;EventIdSet.EventId&#39;</span><span class="p">)</span>
+        <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">event_id</span> <span class="ow">in</span> <span class="n">event_ids</span><span class="p">:</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="n">ECSSystemEventResource</span><span class="p">(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span>
+            <span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">events</span>
+
+    <span class="k">def</span> <span class="nf">cancel_simulated_system_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">cancel_simulated_system_events</span><span class="p">(</span><span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">create_disk</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">disk_id</span> <span class="o">=</span> <span class="n">_new_get_key_in_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;DiskId&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ECSDiskResource</span><span class="p">(</span><span class="n">disk_id</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">create_image</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">image_id</span> <span class="o">=</span> <span class="n">_new_get_key_in_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;ImageId&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ECSImageResource</span><span class="p">(</span><span class="n">image_id</span><span class="p">,</span> <span class="n">_client</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">add_tags</span><span class="p">(</span><span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">remove_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">_params</span> <span class="o">=</span> <span class="n">_transfer_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">remove_tags</span><span class="p">(</span><span class="o">**</span><span class="n">_params</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, sdk
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

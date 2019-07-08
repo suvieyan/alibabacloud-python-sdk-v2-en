@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, sdk
+# This file is distributed under the same license as the 阿里云Python SDK使用文档
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 阿里云Python SDK使用文档 \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-08 15:29+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../source/advance/client/02_timeout.rst:2
+msgid "超时"
+msgstr ""
+
+#: ../../source/advance/client/02_timeout.rst:4
+msgid ""
+"``Alibaba Cloud Python SDK`` 超时分为连接超时（ ``connection_timeout`` ）和读超时（ "
+"``read_timeout`` ）。"
+msgstr ""
+
+#: ../../source/advance/client/02_timeout.rst:7
+msgid "**connection_timeout：** 连接超时。TCP建立连接的时间阈值，单位为秒。默认5秒"
+msgstr ""
+
+#: ../../source/advance/client/02_timeout.rst:10
+msgid "**read_timeout :** 读超时。 客户端接收到服务端响应的时间阈值，单位为秒。默认10秒"
+msgstr ""
+
+#: ../../source/advance/client/02_timeout.rst:13
+msgid "例如，您想自定义超时时间，请使用以下代码。"
+msgstr ""
+
+#: ../../source/advance/client/02_timeout.rst:28
+msgid "我们提供了多种方式的配置超时，参照 ::ref:`handle-client`"
+msgstr ""
+

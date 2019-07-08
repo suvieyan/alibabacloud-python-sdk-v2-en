@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, sdk
+# This file is distributed under the same license as the 阿里云Python SDK使用文档 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 阿里云Python SDK使用文档 \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-08 15:29+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/higher/03_endpoint.rst:4
+msgid "管理 Endpoint"
+msgstr ""
+
+#: ../../source/higher/03_endpoint.rst:6
+msgid "Endpoint 是您使用 ``Alibaba Cloud SDK`` 访问某个产品或者服务的访问域名。 ``Alibaba Cloud Python SDK``\\ 内部封装 ``Endpoint`` 寻址流程，获取 ``Endpoint`` 。您也可以通过直接指定 ``Endpoint`` 的方式省略寻址。"
+msgstr ""
+
+#: ../../source/higher/03_endpoint.rst:11
+msgid "默认Endpoint寻址流程"
+msgstr ""
+
+#: ../../../alibabacloud/endpoint/default_endpoint_resolver.py:docstring of alibabacloud.endpoint.default_endpoint_resolver.DefaultEndpointResolver:1
+msgid "`Alibaba Cloud Python` endpoint 解析链"
+msgstr ""
+
+#: ../../../alibabacloud/endpoint/default_endpoint_resolver.py:docstring of alibabacloud.endpoint.default_endpoint_resolver.DefaultEndpointResolver:4
+msgid "Deprecated use for add_endpoint and modify_endpoint Not recommended"
+msgstr ""
+
+#: ../../source/higher/03_endpoint.rst:17
+msgid "用户自定义Endpoint寻址"
+msgstr ""
+
+#: ../../source/higher/03_endpoint.rst:19
+msgid "您的 ``Endpoint`` 解析需要实现一个 ``resolve`` 的接口，返回一个可用的 ``endpoint``"
+msgstr ""
+
+#: ../../source/higher/03_endpoint.rst:21
+msgid "例如，您想自定义一个名为 ``CustomEndpointResolve`` 的 ``Endpoint`` 管理工具 ，可以参照以下代码："
+msgstr ""
+
+#: ../../source/higher/03_endpoint.rst:35
+msgid "使用用户自定义的寻址"
+msgstr ""
+
+#: ../../source/higher/03_endpoint.rst:37
+msgid "例如， 您自定义了一个名为 ``CustomEndpointResolve`` 的  ``Endpoint`` 管理工具 ，您可以使用以下方式引用它，替代我们默认的 ``Endpoint`` 寻址。"
+msgstr ""
+

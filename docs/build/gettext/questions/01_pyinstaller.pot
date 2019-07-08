@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, sdk
+# This file is distributed under the same license as the 阿里云Python SDK使用文档 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 阿里云Python SDK使用文档 \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-08 15:29+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../source/questions/01_pyinstaller.rst:2
+msgid "PyInstaller 打包出现【No such file or directory】"
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:4
+msgid "不少用户在Windows平台下使用\\ ``PyInstaller`` 打包自己通过 ``Alibaba Cloud Python SDK`` 构造的应用，都会出现\\ ``FileNotFoundError：No such file or directory：'...\\retry_config.json'`` 这样的问题。"
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:11
+msgid "原因"
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:13
+msgid "该问题产生的原因是\\ ``Alibaba Cloud Python SDK`` 使用了\\ ``__file__``\\ 来获取\\ ``retry_config.json``\\ 文件的完整路径，然而\\ ``PyInstaller`` 在打包期间冻结二进制文件，\\ ``PyInstaller`` 搜索的相对路径是针对自己的打包文件bundle文件，因此\\ ``PyInstaller`` 打包 ``Alibaba Cloud Python SDK`` 构造的应用会出现以上错误。"
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:21
+msgid "解决方案："
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:25
+msgid "1，使用py2exe 或者 freeze 来代替PyInstaller"
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:27
+msgid "当前有三种方式生成冻结二进制"
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:29
+msgid "`py2exe <http://www.py2exe.org/>`__ ，仅支持在Windows下使用"
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:31
+msgid "`freeze <https://wiki.python.org/moin/Freeze>`__ 最初始的版本"
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:33
+msgid "`PyInstaller <https://www.pyinstaller.org/>`__ ，和py2exe类似，它能够在Linux及Unix上使用，并且能够生成自安装的二进制文件"
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:38
+msgid "2，PyInstaller 提供的方法"
+msgstr ""
+
+#: ../../source/questions/01_pyinstaller.rst:40
+msgid "``PyInstaller``\\ 针对 ``__file__``\\ 提供了解决方案：https://pyinstaller.readthedocs.io/en/stable/spec-files.html#adding-files-to-the-bundle"
+msgstr ""
+

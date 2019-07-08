@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="'en'" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="'en'" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 可用资源 &mdash; 阿里云Python SDK使用文档 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. API文档" href="03_api.html" />
+    <link rel="prev" title="1. 可用客户端" href="01_client.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 阿里云Python SDK使用文档
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advance/index.html">进阶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../higher/index.html">高级实践</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">用户指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_client.html">1. 可用客户端</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 可用资源</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ecs">2.1. ECS 资源类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#slb">2.2. SLB 资源类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vpc">2.3. VPC 资源类</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03_api.html">3. API文档</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../questions/index.html">FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">阿里云Python SDK使用文档</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">用户指南</a> &raquo;</li>
+        
+      <li>2. 可用资源</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/reference/02_resource.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-alibabacloud">
+<span id="id1"></span><span id="usage-resources"></span><h1>2. 可用资源<a class="headerlink" href="#module-alibabacloud" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ecs">
+<h2>2.1. ECS 资源类<a class="headerlink" href="#ecs" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="alibabacloud.services.ecs.ECSResource">
+<em class="property">class </em><code class="descclassname">alibabacloud.services.ecs.</code><code class="descname">ECSResource</code><span class="sig-paren">(</span><em>_client=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/alibabacloud/services/ecs.html#ECSResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#alibabacloud.services.ecs.ECSResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>ECS 资源类</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>_client</strong> (<em>alibaba.client.AlibabaCloudClient</em>) -- Alibaba Cloud Client</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="alibabacloud.services.ecs.ECSInstanceResource">
+<em class="property">class </em><code class="descclassname">alibabacloud.services.ecs.</code><code class="descname">ECSInstanceResource</code><span class="sig-paren">(</span><em>instance_id</em>, <em>_client=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/alibabacloud/services/ecs.html#ECSInstanceResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#alibabacloud.services.ecs.ECSInstanceResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ecs 实例资源类</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance_id</strong> (<em>str</em>) -- 实例ID</p></li>
+<li><p><strong>_client</strong> (<em>alibaba.client.AlibabaCloudClient</em>) -- Alibaba Cloud Client</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="alibabacloud.services.ecs.ECSInstanceFullStatus">
+<em class="property">class </em><code class="descclassname">alibabacloud.services.ecs.</code><code class="descname">ECSInstanceFullStatus</code><span class="sig-paren">(</span><em>service_name</em>, <em>_client=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/alibabacloud/services/ecs.html#ECSInstanceFullStatus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#alibabacloud.services.ecs.ECSInstanceFullStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>ECS 实例状态资源类</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="alibabacloud.services.ecs.ECSDiskResource">
+<em class="property">class </em><code class="descclassname">alibabacloud.services.ecs.</code><code class="descname">ECSDiskResource</code><span class="sig-paren">(</span><em>disk_id</em>, <em>_client=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/alibabacloud/services/ecs.html#ECSDiskResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#alibabacloud.services.ecs.ECSDiskResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>ECS 硬盘资源类</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>disk_id</strong> (<em>str</em>) -- 硬盘id</p></li>
+<li><p><strong>_client</strong> (<em>alibaba.client.AlibabaCloudClient</em>) -- Alibaba Cloud Client</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="alibabacloud.services.ecs.ECSImageResource">
+<em class="property">class </em><code class="descclassname">alibabacloud.services.ecs.</code><code class="descname">ECSImageResource</code><span class="sig-paren">(</span><em>image_id</em>, <em>_client=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/alibabacloud/services/ecs.html#ECSImageResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#alibabacloud.services.ecs.ECSImageResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ecs 镜像资源类</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_id</strong> (<em>str</em>) -- 镜像id</p></li>
+<li><p><strong>_client</strong> (<em>alibaba.client.AlibabaCloudClient</em>) -- Alibaba Cloud Client</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="alibabacloud.services.ecs.ECSSystemEventResource">
+<em class="property">class </em><code class="descclassname">alibabacloud.services.ecs.</code><code class="descname">ECSSystemEventResource</code><span class="sig-paren">(</span><em>event_id</em>, <em>_client=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/alibabacloud/services/ecs.html#ECSSystemEventResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#alibabacloud.services.ecs.ECSSystemEventResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>ECS 系统事件资源类</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>event_id</strong> (<em>str</em>) -- 事件id</p></li>
+<li><p><strong>_client</strong> (<em>alibaba.client.AlibabaCloudClient</em>) -- Alibaba Cloud Client</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="slb">
+<h2>2.2. SLB 资源类<a class="headerlink" href="#slb" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="alibabacloud.services.slb.SLBResource">
+<em class="property">class </em><code class="descclassname">alibabacloud.services.slb.</code><code class="descname">SLBResource</code><span class="sig-paren">(</span><em>_client=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/alibabacloud/services/slb.html#SLBResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#alibabacloud.services.slb.SLBResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>负载均衡资源类</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>_client</strong> (<em>alibaba.client.AlibabaCloudClient</em>) -- Alibaba Cloud Client</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="vpc">
+<h2>2.3. VPC 资源类<a class="headerlink" href="#vpc" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="alibabacloud.services.vpc.VPCResource">
+<em class="property">class </em><code class="descclassname">alibabacloud.services.vpc.</code><code class="descname">VPCResource</code><span class="sig-paren">(</span><em>_client=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/alibabacloud/services/vpc.html#VPCResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#alibabacloud.services.vpc.VPCResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>VPC 资源类</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>_client</strong> (<em>alibaba.client.AlibabaCloudClient</em>) -- Alibaba Cloud Client</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="03_api.html" class="btn btn-neutral float-right" title="3. API文档" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="01_client.html" class="btn btn-neutral float-left" title="1. 可用客户端" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, sdk
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

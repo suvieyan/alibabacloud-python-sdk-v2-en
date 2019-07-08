@@ -1,0 +1,211 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, sdk
+# This file is distributed under the same license as the 阿里云Python SDK使用文档
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 阿里云Python SDK使用文档 \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-08 15:34+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../source/reference/03_api.rst:2
+msgid "API文档"
+msgstr "API Documents"
+
+#: ../../source/reference/03_api.rst:7
+msgid "获取Client"
+msgstr ""
+
+#: alibabacloud.get_client:1 of
+msgid "获取 `Alibaba Cloud Python SDK` 某个产品某个Version的client"
+msgstr ""
+
+#: alibabacloud.client.AlibabaCloudClient alibabacloud.client.ClientConfig
+#: alibabacloud.get_client alibabacloud.get_resource of
+msgid "Parameters"
+msgstr ""
+
+#: alibabacloud.get_client:3 of
+msgid "产品的product_code，比如Ecs"
+msgstr ""
+
+#: alibabacloud.get_client:6 alibabacloud.get_resource:9 of
+msgid "产品的version，格式：2018-06-09"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:4 alibabacloud.get_client:9
+#: alibabacloud.get_resource:12 of
+msgid "参照 `可用区 <https://help.aliyun.com/document_detail/40654.html>`_"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:7 alibabacloud.get_client:12
+#: alibabacloud.get_resource:15 of
+msgid "自定义的endpoint，不经过endpoint的解析流程"
+msgstr ""
+
+#: alibabacloud.get_client:15 alibabacloud.get_resource:18 of
+msgid "秘钥AccessKeyID"
+msgstr ""
+
+#: alibabacloud.get_client:18 alibabacloud.get_resource:21 of
+msgid "秘钥AccessKeySecret"
+msgstr ""
+
+#: alibabacloud.get_client:21 alibabacloud.get_resource:24 of
+msgid "自定义的credentials_provider，如果用户自定义 credentials_provider,使用用户自定义的"
+msgstr ""
+
+#: alibabacloud.get_client:25 alibabacloud.get_resource:28 of
+msgid "用户自定义的重试策略"
+msgstr ""
+
+#: alibabacloud.get_client:28 alibabacloud.get_resource:31 of
+msgid "用户自定义的endpoint_resolver，如果用户自定义 endpoint_resolver,使用用户自定义的"
+msgstr ""
+
+#: alibabacloud.get_client:32 alibabacloud.get_resource:35 of
+msgid ""
+"如果用户自定义ClientConfig，使用用户自定义的，否则初始化一个ClientConfig。 如果用户在 `get_client()` "
+"指定region_id ,则会覆盖config当中的region_id"
+msgstr ""
+
+#: alibabacloud.get_client alibabacloud.get_resource of
+msgid "Returns"
+msgstr ""
+
+#: alibabacloud.get_client:36 of
+msgid "client"
+msgstr ""
+
+#: alibabacloud.get_client alibabacloud.get_resource of
+msgid "Return type"
+msgstr ""
+
+#: ../../source/reference/03_api.rst:12
+msgid "获取Resource"
+msgstr ""
+
+#: alibabacloud.get_resource:1 of
+msgid "获取 `Alibaba Cloud Python SDK` 某个Resource"
+msgstr ""
+
+#: alibabacloud.get_resource:3 of
+msgid "资源类型，比如ecs/slb/vpc等等"
+msgstr ""
+
+#: alibabacloud.get_resource:6 of
+msgid "资源ID，比如ecs的InstanceId，用于操作具体的资源"
+msgstr ""
+
+#: alibabacloud.get_resource:39 of
+msgid "是否开启控制台日志"
+msgstr ""
+
+#: alibabacloud.get_resource:42 of
+msgid "是否开启文件日志"
+msgstr ""
+
+#: alibabacloud.get_resource:45 of
+msgid "主要包含日志相关的参数，为可选参数，用法"
+msgstr ""
+
+#: alibabacloud.get_resource:48 of
+msgid "**配置控制台日志如下**"
+msgstr ""
+
+#: alibabacloud.get_resource:58 of
+msgid "**配置文件日志如下**"
+msgstr ""
+
+#: alibabacloud.get_resource:69 of
+msgid "资源对象"
+msgstr ""
+
+#: ../../source/reference/03_api.rst:16
+msgid "Client 基类"
+msgstr ""
+
+#: alibabacloud.client.AlibabaCloudClient:1 of
+msgid "`Alibaba Cloud Python` 创建Client的基类"
+msgstr ""
+
+#: alibabacloud.client.AlibabaCloudClient:3 of
+msgid "创建client的配置"
+msgstr ""
+
+#: alibabacloud.client.AlibabaCloudClient:6 of
+msgid "凭证链"
+msgstr ""
+
+#: alibabacloud.client.AlibabaCloudClient:9 of
+msgid "重试策略"
+msgstr ""
+
+#: alibabacloud.client.AlibabaCloudClient:12 of
+msgid "endpoint 解析链"
+msgstr ""
+
+#: ../../source/reference/03_api.rst:20
+msgid "Config 类"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:1 of
+msgid ""
+"`Alibaba Cloud Python SDK`  Config 类 读取Config的优先级:custom > file > env > "
+"default"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:10 of
+msgid "是否重试, 默认True"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:13 of
+msgid "请求最大重试次数，默认3次"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:16 of
+msgid "用户自定义的UA"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:19 of
+msgid "是否使用ssl，默认True"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:22 of
+msgid "指定 http 请求端口，默认80"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:25 of
+msgid "指定 https 请求端口，默认443"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:28 of
+msgid "指定连接超时时间，默认5s"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:31 of
+msgid "指定读取response超时时间，默认10s"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:34 of
+msgid "是否开启httpDEBUG功能，默认False"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:37 of
+msgid "http 代理地址"
+msgstr ""
+
+#: alibabacloud.client.ClientConfig:40 of
+msgid "https 代理地址"
+msgstr ""
+

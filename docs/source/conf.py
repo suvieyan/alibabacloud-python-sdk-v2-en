@@ -45,7 +45,7 @@ source_suffix = '.rst'
 
 master_doc = 'index'
 
-language = 'zh_CN'
+language = "zh_CN"
 
 pygments_style = 'sphinx'
 
@@ -53,7 +53,8 @@ pygments_style = 'sphinx'
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
-
+locale_dirs = ['locale/']   # path is example but recommended.
+gettext_compact = False     # optional.
 
 # -- Options for HTML output -------------------------------------------------
 
